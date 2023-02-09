@@ -401,7 +401,7 @@ open class KolodaView: UIView, DraggableCardDelegate {
     }
     
     func card(allowVerticalSwipe card: DraggableCardView) -> Bool {
-        return delegate?.kolodaShouldAllowVerticalSwipe(self)
+        return delegate?.kolodaShouldAllowVerticalSwipe(self) ?? true
     }
 
     // MARK: Private
