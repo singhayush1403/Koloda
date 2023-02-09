@@ -286,7 +286,7 @@ public class DraggableCardView: UIView, UIGestureRecognizerDelegate {
             // Ensure it's a horizontal drag
             let velocity = panRecognizer.velocity(in: self)
             if abs(velocity.y) > abs(velocity.x) {
-                return delegate?.card(allowVerticalSwipe: self)
+                return delegate?.card(allowVerticalSwipe: self) ?? true
             }
             return true
     }
