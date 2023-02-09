@@ -29,6 +29,7 @@ protocol DraggableCardDelegate: AnyObject {
     func card(cardSwipeSpeed card: DraggableCardView) -> DragSpeed
     func card(cardPanBegan card: DraggableCardView)
     func card(cardPanFinished card: DraggableCardView)
+    func card(allowVerticalSwipe card: DraggableCardView) -> Bool
 }
 
 //Drag animation constants
@@ -285,7 +286,7 @@ public class DraggableCardView: UIView, UIGestureRecognizerDelegate {
             // Ensure it's a horizontal drag
             let velocity = panRecognizer.velocity(in: self)
             if abs(velocity.y) > abs(velocity.x) {
-                return false
+                return delegate?.card(allowVerticalSwipe: self)
             }
             return true
     }

@@ -65,6 +65,7 @@ public protocol KolodaViewDelegate: AnyObject {
     func koloda(_ koloda: KolodaView, shouldDragCardAt index: Int ) -> Bool
     func kolodaPanBegan(_ koloda: KolodaView, card: DraggableCardView)
     func kolodaPanFinished(_ koloda: KolodaView, card: DraggableCardView)
+    func koloda(_ koloda: KolodaView, allowVerticalSwipe) -> Bool
     
 }
 
@@ -86,7 +87,9 @@ public extension KolodaViewDelegate {
     func koloda(_ koloda: KolodaView, shouldDragCardAt index: Int ) -> Bool { return true }
     func kolodaPanBegan(_ koloda: KolodaView, card: DraggableCardView) {}
     func kolodaPanFinished(_ koloda: KolodaView, card: DraggableCardView) {}
+    func koloda(_ koloda: KolodaView,allowVerticalSwipe) -> Bool { return true }
 }
+
 
 open class KolodaView: UIView, DraggableCardDelegate {
     
@@ -395,6 +398,10 @@ open class KolodaView: UIView, DraggableCardDelegate {
 
     func card(cardPanFinished card: DraggableCardView) {
         delegate?.kolodaPanFinished(self, card: card)
+    }
+    
+    func card(allowVerticalSwipe card: DraggableCardView) -> Bool {
+      return delegate?.koloda(self, allowverticalSwipe) ?? true
     }
 
     // MARK: Private
