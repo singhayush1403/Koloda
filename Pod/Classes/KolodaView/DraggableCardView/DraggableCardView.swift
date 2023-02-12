@@ -288,7 +288,7 @@ public class DraggableCardView: UIView, UIGestureRecognizerDelegate {
             if abs(velocity.y) > abs(velocity.x) {
                 return delegate?.card(allowVerticalSwipe: self) ?? true
             }
-            return true
+            return delegate?.card(cardShouldDrag: self) ?? true
     }
     
     @objc func tapRecognized(_ recogznier: UITapGestureRecognizer) {
